@@ -24,7 +24,8 @@ Rhythm is a minimalist, calming Android application designed to help you stay on
 
 ## 📸 Screenshots
 
-*(Add screenshots of your Dashboard and Alarm screen here)*
+<img width="437" height="946" alt="image" src="https://github.com/user-attachments/assets/7083e0df-aa2c-4f59-bb51-092ee21cd45a" />
+
 
 ## 🚀 Getting Started
 
