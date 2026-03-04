@@ -43,20 +43,10 @@ class AlarmActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         // Configuration to show over lock screen and wake up screen
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            setShowWhenLocked(true)
+        setShowWhenLocked(true)
             setTurnScreenOn(true)
             val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
             keyguardManager.requestDismissKeyguard(this, null)
-        } else {
-            @Suppress("DEPRECATION")
-            window.addFlags(
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                        WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
-                        WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
-                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-            )
-        }
 
         val alarmId = intent.getLongExtra(AlarmReceiver.EXTRA_ALARM_ID, -1L)
         val alarmName = intent.getStringExtra(AlarmReceiver.EXTRA_ALARM_NAME) ?: "Medication"
@@ -93,12 +83,10 @@ class AlarmActivity : ComponentActivity() {
             ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
         
         ringtone = RingtoneManager.getRingtone(applicationContext, alarmUri)?.apply {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                audioAttributes = AudioAttributes.Builder()
+            audioAttributes = AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_ALARM)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build()
-            }
             play()
         }
 
@@ -112,13 +100,8 @@ class AlarmActivity : ComponentActivity() {
         }
 
         val pattern = longArrayOf(0, 500, 500)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
-        } else {
-            @Suppress("DEPRECATION")
-            vibrator?.vibrate(pattern, 0)
+        vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
         }
-    }
 
     private fun stopAlarm() {
         ringtone?.stop()
