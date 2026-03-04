@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kraftorix.myapplication"
+    namespace = "com.kraftorix.rhythm"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.kraftorix.myapplication"
+        applicationId = "com.kraftorix.rhythm"
         minSdk = 29
         targetSdk = 35
         versionCode = 1
@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -67,6 +68,9 @@ dependencies {
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
+
+    // Timber
+    implementation(libs.timber)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -1,0 +1,12 @@
+package com.kraftorix.rhythm.data.repository
+
+import com.kraftorix.rhythm.data.local.PillAlarmEntity
+import kotlinx.coroutines.flow.Flow
+
+interface PillAlarmRepository {
+    fun getAllAlarms(): Flow<List<PillAlarmEntity>>
+    suspend fun getAlarmById(id: Long): PillAlarmEntity?
+    suspend fun insertAlarm(alarm: PillAlarmEntity): Long
+    suspend fun updateAlarm(alarm: PillAlarmEntity)
+    suspend fun deleteAlarm(alarm: PillAlarmEntity)
+}
